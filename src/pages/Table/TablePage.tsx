@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import styles from "./Tables.module.css";
-import { getProducts } from "../../api/api";
+import { getProducts } from "../../api/products";
+import { Product } from "./ProductsTypes";
 
 const ProductsTable: React.FC = () => {
 
@@ -8,10 +9,8 @@ const ProductsTable: React.FC = () => {
 
   const getData = async () => {
     const {products, total, skip, limit } = await getProducts();
-    console.log(products);
     setProducts(products);
   }
-
 
   useEffect(() => {
     getData();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../auth/AuthProvider";
 import styles from "./Login.module.css";
-import { userSignup } from "../../api/api";
+import { userSignup } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
@@ -9,6 +9,7 @@ const Login: React.FC = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
 
   const [errors, setErrors] = useState<{
     username?: string;
@@ -30,11 +31,16 @@ const Login: React.FC = () => {
 
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
-
-    const result = await userSignup({ username, password });
-
-    login(result.accessToken);
-    navigate("/table", { replace: true });
+    try {
+      const result = await userSignup({ username, password });
+      await login(result.accessToken, remember);
+      navigate("/table", { replace: true });
+    } catch (error: any) {
+      console.log("auth erorr", error);
+      setErrors({
+        password: "Неверный логин или пароль",
+      });
+    }
   };
 
   return (
@@ -76,7 +82,11 @@ const Login: React.FC = () => {
 
         <div className={styles.options}>
           <label className={styles.checkbox}>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={remember}
+              onChange={(e) => setRemember(e.target.checked)}
+            />
             <span>Запомнить данные</span>
           </label>
         </div>

@@ -1,16 +1,8 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { TOKEN_KEY } from "../pages/Constant/constant";
-
-type User = {
-  token: string;
-};
-
-type AuthContextType = {
-  user: User | null;
-  login: (token: string) => void;
-  logout: () => void;
-  loading: boolean;
-};
+import { TOKEN_KEY } from "../Constant/constant";
+import { getMe } from "../api/auth";
+import { AuthContextType, User } from "./AuthTypes";
+import { getToken, removeToken, setToken } from "./helper";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -22,21 +14,44 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const token = localStorage.getItem(TOKEN_KEY);
-    if (token) {
-      setUser({ token });
+  const getUser = async (token: string) => {
+    setLoading(true);
+    try {
+      const authUser = await getMe(token);
+      const user = {
+        id: authUser.id,
+        username: authUser.username,
+        firstName: authUser.firstName,
+        lastName: authUser.lastName,
+        email: authUser.email,
+        image: authUser.image,
+        role: authUser.role,
+      }
+      setUser(user);
+    } catch (e) {
+      localStorage.removeItem(TOKEN_KEY);
+      setUser(null);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
+  };
+
+  useEffect(() => {
+      const token = getToken()
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    getUser(token);
   }, []);
 
-  const login = (token: string) => {
-    localStorage.setItem(TOKEN_KEY, token);
-    setUser({ token });
+  const login = async (token: string, remember: boolean) => {
+    setToken(token, remember);
+    getUser(token);
   };
 
   const logout = () => {
-    localStorage.removeItem(TOKEN_KEY);
+    removeToken(TOKEN_KEY);
     setUser(null);
   };
 
