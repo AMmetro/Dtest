@@ -12,3 +12,10 @@ export const userSignup = (credentials: any)=> fetch('https://dummyjson.com/auth
   .then(data => {
     return data;
   });
+
+  export const getProducts = () =>
+  fetch('https://dummyjson.com/products')
+.then(res => res.json())
+.then(data => {
+    return data;
+  });

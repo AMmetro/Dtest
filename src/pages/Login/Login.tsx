@@ -19,13 +19,15 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const newErrors: typeof errors = {};
     if (!username.trim()) {
-      newErrors.username = "Username cannot be empty";
+      newErrors.username = "Введите логин";
     }
     if (!password.trim()) {
-      newErrors.password = "Password cannot be empty";
+      newErrors.password = "Введите пароль";
     }
+
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
 
@@ -37,34 +39,59 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div>
-          <input
-            className={styles.input}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter username"
-          />
+      <form className={styles.card} onSubmit={handleSubmit}>
+        <div className={styles.logo} />
+
+        <h1 className={styles.title}>Добро пожаловать!</h1>
+        <p className={styles.subtitle}>Пожалуйста, авторизуйтесь</p>
+
+        <div className={styles.field}>
+          <label>Логин</label>
+          <div className={styles.inputWrapper}>
+            <input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Введите логин"
+            />
+          </div>
           {errors.username && (
-            <div className={styles.error}>{errors.username}</div>
+            <span className={styles.error}>{errors.username}</span>
           )}
         </div>
 
         <div className={styles.field}>
-          <input
-            className={styles.input}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password"
-          />
+          <label>Пароль</label>
+          <div className={styles.inputWrapper}>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Введите пароль"
+            />
+          </div>
           {errors.password && (
-            <div className={styles.error}>{errors.password}</div>
+            <span className={styles.error}>{errors.password}</span>
           )}
         </div>
 
+        <div className={styles.options}>
+          <label className={styles.checkbox}>
+            <input type="checkbox" />
+            <span>Запомнить данные</span>
+          </label>
+        </div>
+
         <button className={styles.button} type="submit">
-          Login
+          Войти
         </button>
+
+        <div className={styles.divider}>
+          <span>или</span>
+        </div>
+
+        <div className={styles.footer}>
+          Нет аккаунта? <a href="#">Создать</a>
+        </div>
       </form>
     </div>
   );
