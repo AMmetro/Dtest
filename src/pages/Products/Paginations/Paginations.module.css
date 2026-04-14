@@ -1,0 +1,44 @@
+.paginationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 0;
+  margin-top: 16px;
+}
+
+.paginationInfo {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.paginationControls button {
+  min-width: 32px;
+  height: 32px;
+
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #6b7280;
+
+  border-radius: 6px;
+  cursor: pointer;
+
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.paginationControls button:hover {
+  background: #f3f4f6;
+}
+
+.activePage {
+  background: #6366f1 !important;
+  color: #fff !important;
+  border-color: #6366f1 !important;
+}

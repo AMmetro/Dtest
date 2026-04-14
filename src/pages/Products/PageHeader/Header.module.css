@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 24px;
+  background: #f5f6f8;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.searchWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.searchInput {
+  width: 500px;
+  max-width: 100%;
+
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+
+  background: #e9ebef;
+  outline: none;
+
+  font-size: 14px;
+  color: #374151;
+}
+
+.searchInput::placeholder {
+  color: #9ca3af;
+}

@@ -2,9 +2,9 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { PublicRoute } from "./auth/PublicRoute";
-import TablePage from "./pages/Table/TablePage";
 import Login from "./pages/Login/Login";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
+import ProductsPage from "./pages/Products/ProductsPage";
 
 
 export const ROUTES = {
@@ -14,8 +14,8 @@ export const ROUTES = {
 };
 
 const protectedRoutes = [
-  { path: ROUTES.ROOT, element: <TablePage /> },
-  { path: ROUTES.TABLE, element: <TablePage /> },
+  { path: ROUTES.ROOT, element: <ProductsPage /> },
+  { path: ROUTES.TABLE, element: <ProductsPage /> },
 ];
 
 const publicRoutes = [

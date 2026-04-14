@@ -1,23 +1,12 @@
 import React, { use, useEffect, useState } from "react";
 import styles from "./Tables.module.css";
-import { getProducts } from "../../api/products";
 import { Product } from "./ProductsTypes";
+import { LOW_RATING } from "../../Constant/constant";
 
-const ProductsTable: React.FC = () => {
-
-  const [products, setProducts] = useState<Product[]>([]);
-
-  const getData = async () => {
-    const {products, total, skip, limit } = await getProducts();
-    setProducts(products);
-  }
-
-  useEffect(() => {
-    getData();
-  }, []);
+const ProductsTable: React.FC<{ products: Product[] }> = ({ products }) => {
 
   if (!products || products.length === 0) {
-    return <div>Loading...</div>;
+    return <div>Ничего не найдено...</div>;
   }
 
   return (
@@ -31,7 +20,7 @@ const ProductsTable: React.FC = () => {
             <th>Артикул</th>
             <th>Оценка</th>
             <th>Цена, ₽</th>
-            <th>Количество</th>
+            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -47,19 +36,19 @@ const ProductsTable: React.FC = () => {
                 <div className={styles.productName}>
                   <div className={styles.avatar} />
                   <div>
-                    <div>{p.name}</div>
+                    <div>{p.title}</div>
                     <div className={styles.subText}>{p.category}</div>
                   </div>
                 </div>
               </td>
 
-              <td>{p.vendor}</td>
+              <td>{p.brand}</td>
               <td>{p.sku}</td>
 
               <td>
                 <span
                   className={
-                    p.rating < 4 ? styles.badRating : styles.goodRating
+                    p.rating < LOW_RATING ? styles.badRating : styles.goodRating
                   }
                 >
                   {p.rating}/5
