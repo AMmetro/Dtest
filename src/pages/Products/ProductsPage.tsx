@@ -3,9 +3,9 @@ import styles from "./Tables.module.css";
 import ProductsTable from "./TablePage";
 import PageHeader from "./PageHeader/PageHeader";
 import useProductsStore from "../../store/useProductsStore";
-import { Data } from "./ProductsTypes";
 import Paginations from "./Paginations/Pagination";
 import AddProducts from "./AddProducts/AddProducts";
+import ProgressBar from "../../shared/progresBar/ProgressBar";
 
 const ProductsPage: React.FC = () => {
 
@@ -18,7 +18,6 @@ const ProductsPage: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
-        // load products into global store on mount
         fetchProducts();
     }, [fetchProducts]);
 
@@ -40,14 +39,16 @@ const ProductsPage: React.FC = () => {
     return (
         <div className={styles.pageWraper}>
             <PageHeader onSearch={handleSearchChange} />
-            <AddProducts />
-            <ProductsTable products={data.products} />
-            <Paginations
-                currentPage={currentPage}
-                totalItems={totalItems}
-                itemsPerPage={itemsPerPage}
-                onPageChange={setCurrentPage}
-            />
+            {loading ? null : <AddProducts />}
+            {loading ? < ProgressBar /> : <ProductsTable products={data.products} />}
+            {loading ? null : (
+                <Paginations
+                    currentPage={currentPage}
+                    totalItems={totalItems}
+                    itemsPerPage={itemsPerPage}
+                    onPageChange={setCurrentPage}
+                />
+            )}
         </div>
     );
 };

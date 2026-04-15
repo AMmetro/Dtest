@@ -1,0 +1,27 @@
+.loaderWrapper {
+    width: 100%;
+    height: 4px;
+    background: #eee;
+    overflow: hidden;
+    position: relative;
+}
+
+.progressBar {
+    width: 30%;
+    height: 100%;
+    background: #007bff;
+    position: absolute;
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0% {
+        left: -30%;
+    }
+    50% {
+        left: 50%;
+    }
+    100% {
+        left: 100%;
+    }
+}

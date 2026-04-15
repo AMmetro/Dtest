@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { PublicRoute } from "./auth/PublicRoute";
 import Login from "./pages/Login/Login";
@@ -24,21 +26,24 @@ const publicRoutes = [
 
 const App: React.FC = () => {
   return (
-    <Routes>
-      <Route element={<ProtectedRoute />}>
-        {protectedRoutes.map(({ path, element }) => (
-          <Route key={path} path={path} element={element} />
-        ))}
-      </Route>
+    <>
+      <ToastContainer />
+      <Routes>
+        <Route element={<ProtectedRoute />}>
+          {protectedRoutes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
+        </Route>
 
-      <Route element={<PublicRoute />}>
-        {publicRoutes.map(({ path, element }) => (
-          <Route key={path} path={path} element={element} />
-        ))}
-      </Route>
+        <Route element={<PublicRoute />}>
+          {publicRoutes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
+        </Route>
 
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </>
   );
 };
 

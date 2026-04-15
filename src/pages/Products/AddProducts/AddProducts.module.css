@@ -20,7 +20,6 @@
   gap: 10px;
 }
 
-/* Кнопка обновления */
 .refresh {
   width: 36px;
   height: 36px;
@@ -41,7 +40,6 @@
   background: #f3f4f6;
 }
 
-/* Кнопка добавить */
 .addButton {
   display: flex;
   align-items: center;

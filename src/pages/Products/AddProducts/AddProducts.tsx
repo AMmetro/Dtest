@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styles from './AddProducts.module.css';
 import AddProductModal from '../AddProductsModal/AddProductsModal';
+import useProductsStore from '../../../store/useProductsStore';
 
 const TableActions: React.FC = () => {
-
+  const fetchProducts = useProductsStore((state) => state.fetchProducts);
   const [isOpen, setIsOpen] = useState(false);
 
   const onAdd = () => {
@@ -15,7 +16,7 @@ const TableActions: React.FC = () => {
   };
 
   const onRefresh = () => {
-    // todo
+    fetchProducts();
   };
 
   return (

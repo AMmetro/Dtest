@@ -1,4 +1,5 @@
 import create from 'zustand';
+import { toast } from 'react-toastify';
 import { Data } from '../pages/Products/ProductsTypes';
 import { getProducts, searchProducts as apiSearchProducts } from '../api/products';
 import { ProductsState } from './TypesProductsStore';
@@ -27,6 +28,10 @@ const useProductsStore = create<ProductsState>((set) => ({
                 products: [productItem, ...(state.data.products || [])],
             },
         }));
+                try {
+                    toast.success('Товар добавлен');
+                } catch (e) {
+                }
     },
 
     searchProducts: async (query: string) => {
