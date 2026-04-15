@@ -97,3 +97,9 @@ th, td {
   font-size: 12px;
   margin-top: 4px;
 }
+
+.pageWraper{
+  padding: 20px;
+  background: #f7f8fa;
+  min-height: 100vh
+}

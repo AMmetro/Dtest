@@ -7,16 +7,6 @@ import { Data } from "./ProductsTypes";
 import Paginations from "./Paginations/Pagination";
 import AddProducts from "./AddProducts/AddProducts";
 
-interface Product {
-    id: number;
-    name: string;
-    brand: string;
-    sku: string;
-    rating: number;
-    price: number;
-    categorySubText?: string;
-}
-
 const ProductsPage: React.FC = () => {
 
     const [data, setData] = useState<Data>({} as Data);
@@ -61,9 +51,9 @@ const ProductsPage: React.FC = () => {
     );
 
     return (
-        <>
+        <div className={styles.pageWraper}>
             <PageHeader onSearch={handleSearchChange} />
-            <AddProducts onAdd={()=>{}} onRefresh={()=>{}} />
+            <AddProducts />
             <ProductsTable products={data.products} />
             <Paginations
                 currentPage={currentPage}
@@ -71,7 +61,7 @@ const ProductsPage: React.FC = () => {
                 itemsPerPage={itemsPerPage}
                 onPageChange={setCurrentPage}
             />
-        </>
+        </div>
     );
 };
 
