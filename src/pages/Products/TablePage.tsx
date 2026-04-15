@@ -59,7 +59,6 @@ const ProductsTable: React.FC<{ products: Product[] }> = ({ products }) => {
 
               <td>
                 <div className={styles.quantity}>
-                  <div className={styles.bars}></div>
                   <button className={styles.addBtn}>+</button>
                 </div>
               </td>
