@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./AddProducts.module.css";
 import { Product } from "../ProductsTypes";
+import useProductsStore from "../../../store/useProductsStore";
 
 type Props = {
   isOpen: boolean;
@@ -10,7 +11,7 @@ type Props = {
 
 const AddProductModal: React.FC<Props> = ({isOpen, onAdd, onClose }) => {
 
-  
+    const addingProduct = useProductsStore((state) => state.addProduct);
 
   const [form, setForm] = useState<Product>({
     id: Date.now(),
@@ -38,7 +39,7 @@ const AddProductModal: React.FC<Props> = ({isOpen, onAdd, onClose }) => {
   };
 
   const handleSubmit = () => {
-    onAdd({ ...form, id: Date.now() });
+    addingProduct({ ...form, id: Date.now() });
     onClose();
   };
 
