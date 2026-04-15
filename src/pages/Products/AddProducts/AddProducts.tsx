@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import styles from './AddProducts.module.css';
 import AddProductModal from '../AddProductsModal/AddProductsModal';
 import useProductsStore from '../../../store/useProductsStore';
+import SorterButton from '../../../shared/sorterButton/SorterButton';
 
-const TableActions: React.FC = () => {
-  const fetchProducts = useProductsStore((state) => state.fetchProducts);
+const AddProducts: React.FC = () => {
+  const { fetchProducts, sortOrder, toggleSort } = useProductsStore();
   const [isOpen, setIsOpen] = useState(false);
 
-  const onAdd = () => {
-      setIsOpen(true);
+   const onAdd = () => {
+    setIsOpen(true);
   };
 
   const onClose = () => {
@@ -22,8 +23,8 @@ const TableActions: React.FC = () => {
   return (
     <>
       <AddProductModal
-        isOpen={isOpen} 
-        onClose={onClose} 
+        isOpen={isOpen}
+        onClose={onClose}
         onAdd={() => { }}
       />
       <div className={styles.wrapper}>
@@ -32,6 +33,7 @@ const TableActions: React.FC = () => {
           <button className={styles.refresh} onClick={onRefresh}>
             ⟳
           </button>
+          <SorterButton onClick={()=>toggleSort()} sortOrder={sortOrder} />
           <button className={styles.addButton} onClick={onAdd}>
             <span className={styles.plus}>＋</span>
             Добавить
@@ -42,4 +44,4 @@ const TableActions: React.FC = () => {
   );
 };
 
-export default TableActions;
+export default React.memo(AddProducts);

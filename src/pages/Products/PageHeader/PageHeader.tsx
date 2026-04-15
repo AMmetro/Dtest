@@ -33,4 +33,4 @@ const Header: React.FC<PageHeaderProps> = ({ onSearch, delay = 500 }) => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./AddProducts.module.css";
 import { Product } from "../ProductsTypes";
 import useProductsStore from "../../../store/useProductsStore";
+import { toast } from 'react-toastify';
 
 type Props = {
   isOpen: boolean;
@@ -9,9 +10,9 @@ type Props = {
   onAdd: (product: Product) => void;
 };
 
-const AddProductModal: React.FC<Props> = ({isOpen, onAdd, onClose }) => {
+const AddProductModal: React.FC<Props> = ({ isOpen, onAdd, onClose }) => {
 
-    const addingProduct = useProductsStore((state) => state.addProduct);
+  const addingProduct = useProductsStore((state) => state.addProduct);
 
   const [form, setForm] = useState<Product>({
     id: Date.now(),
@@ -39,7 +40,13 @@ const AddProductModal: React.FC<Props> = ({isOpen, onAdd, onClose }) => {
   };
 
   const handleSubmit = () => {
-    addingProduct({ ...form, id: Date.now() });
+    try {
+      addingProduct({ ...form, id: Date.now() });
+      toast.success('Товар добавлен');
+    } catch (e) {
+      toast.error('Произошла ошибка');
+    }
+
     onClose();
   };
 
