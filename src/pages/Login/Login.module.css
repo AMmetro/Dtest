@@ -17,12 +17,48 @@
 }
 
 .logo {
-  width: 48px;
+ width: 48px;
   height: 48px;
   margin: 0 auto 16px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #5f6cff, #3a3aff);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(
+    circle at 30% 25%,
+    #ffffff 0%,
+    #f8f8f8 40%,
+    #eeeeee 100%
+  );
+
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.04),
+    inset 0 2px 6px rgba(255, 255, 255, 0.9),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.03);
 }
+
+.logo img {
+  width: 40%;
+  height: 40%;
+  object-fit: contain;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .title {
   text-align: center;
@@ -136,3 +172,22 @@
   font-size: 12px;
   margin-top: 4px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 import useDebounce from '../../../Utils/Debounse';
 import { PageHeaderProps } from '../ProductsTypes';
+import SearchLogo from '../../../assets/SearchLogo';
 
 const Header: React.FC<PageHeaderProps> = ({ onSearch, delay = 500 }) => {
 
@@ -20,14 +21,17 @@ const Header: React.FC<PageHeaderProps> = ({ onSearch, delay = 500 }) => {
   return (
     <div className={styles.header}>
       <h1 className={styles.title}>Товары</h1>
-
       <div className={styles.searchWrapper}>
-        <input
-          type="text"
-          placeholder="Найти"
-          className={styles.searchInput}
-          onChange={handleSearchChange}
-        />
+        <div className={styles.inputWrapper}>
+          <SearchLogo />
+          <input
+            type="text"
+            placeholder="Найти"
+            className={styles.searchInput}
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
       </div>
     </div>
   );

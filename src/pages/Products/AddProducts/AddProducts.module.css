@@ -2,9 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 12px 16px;
-  margin-bottom: 12px;
+  padding: 12px 16px 0 16px;
+  background-color: white;
+  margin-top: 20px;
 }
 
 .title {
@@ -13,7 +13,6 @@
   color: #111827;
 }
 
-/* Правая часть */
 .actions {
   display: flex;
   align-items: center;

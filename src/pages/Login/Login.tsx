@@ -3,6 +3,7 @@ import { useAuth } from "../../auth/AuthProvider";
 import styles from "./Login.module.css";
 import { userSignup } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
+import LoginLogo from "../../assets/LoginLogo";
 
 const Login: React.FC = () => {
   const { login } = useAuth();
@@ -46,11 +47,11 @@ const Login: React.FC = () => {
   return (
     <div className={styles.container}>
       <form className={styles.card} onSubmit={handleSubmit}>
-        <div className={styles.logo} />
-
+        <div className={styles.logo}>
+          <LoginLogo/>
+        </div>
         <h1 className={styles.title}>Добро пожаловать!</h1>
         <p className={styles.subtitle}>Пожалуйста, авторизуйтесь</p>
-
         <div className={styles.field}>
           <label>Логин</label>
           <div className={styles.inputWrapper}>
@@ -64,7 +65,6 @@ const Login: React.FC = () => {
             <span className={styles.error}>{errors.username}</span>
           )}
         </div>
-
         <div className={styles.field}>
           <label>Пароль</label>
           <div className={styles.inputWrapper}>
@@ -79,7 +79,6 @@ const Login: React.FC = () => {
             <span className={styles.error}>{errors.password}</span>
           )}
         </div>
-
         <div className={styles.options}>
           <label className={styles.checkbox}>
             <input
@@ -90,15 +89,12 @@ const Login: React.FC = () => {
             <span>Запомнить данные</span>
           </label>
         </div>
-
         <button className={styles.button} type="submit">
           Войти
         </button>
-
         <div className={styles.divider}>
           <span>или</span>
         </div>
-
         <div className={styles.footer}>
           Нет аккаунта? <a href="#">Создать</a>
         </div>

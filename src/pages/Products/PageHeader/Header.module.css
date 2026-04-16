@@ -4,7 +4,7 @@
   justify-content: space-between;
 
   padding: 16px 24px;
-  background: #f5f6f8;
+  background: white;
 }
 
 .title {
@@ -20,13 +20,11 @@
 }
 
 .searchInput {
-  width: 500px;
-  max-width: 100%;
+  width: 100%;
+  padding: 10px 14px 10px 36px; /* слева больше из-за иконки */
 
-  padding: 10px 14px;
   border-radius: 8px;
   border: none;
-
   background: #e9ebef;
   outline: none;
 
@@ -36,4 +34,10 @@
 
 .searchInput::placeholder {
   color: #9ca3af;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 500px;
+  max-width: 100%;
 }
